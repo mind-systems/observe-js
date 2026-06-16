@@ -1,0 +1,25 @@
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Node / TypeScript
+node_modules/
+dist/
+build/
+out/
+coverage/
+*.tsbuildinfo
+
+# AI tooling (reproducible; not part of the project)
+.agents/
+.claude/skills/
+.ai-factory.json
+
+# Logs / temp
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+.tmp
