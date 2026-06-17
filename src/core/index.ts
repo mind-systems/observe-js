@@ -29,3 +29,7 @@ export { encodeLogs, DEFAULT_SCOPE } from './encode.js';
 // OTLP/HTTP exporter
 export type { Exporter, ExporterConfig } from './exporter.js';
 export { createExporter } from './exporter.js';
+
+// Bounded batching buffer
+export type { Batcher, BatcherConfig } from './batcher.js';
+export { createBatcher } from './batcher.js';
