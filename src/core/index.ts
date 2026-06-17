@@ -33,3 +33,7 @@ export { createExporter } from './exporter.js';
 // Bounded batching buffer
 export type { Batcher, BatcherConfig } from './batcher.js';
 export { createBatcher } from './batcher.js';
+
+// Ambient context interface and registry
+export type { Context, ContextManager } from './context.js';
+export { setContextManager, getActiveContext, runWithContext, bindContext } from './context.js';
