@@ -9,7 +9,8 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
-    "lib": ["ES2022", "DOM"]
+    "lib": ["ES2022", "DOM"],
+    "resolveJsonModule": true
   },
   "include": ["src", "test"],
   "exclude": ["dist", "contract"]
