@@ -40,6 +40,10 @@ Decomposition of the root milestone **`observe-js` SDK** (see `../.ai-factory/RO
 - [x] **Contract conformance test (offline — required)** — serialize records and assert **field-for-field** equality against the submodule's `golden-record.json` and `fixtures/service-start.json`; assert the level table matches `levels.json`. This harness is itself a reference artifact for swift/dart. *Done when:* `vitest` conformance suite green against `observe-contract@v0.1.2`. **Spec:** `.ai-factory/notes/11-conformance-test.md` [27m 55s]
 - [x] **Live smoke vs local Loki (required for this SDK)** — `init` + `log` → POST to `http://localhost:3100/otlp/v1/logs` → query back via LogQL; assert labels `project`/`service_name`/`level` and `trace_id` queryable as structured metadata (mirrors `backend-verify`). *Done when:* a record emitted by observe-js is retrievable from running Loki with the correct label set. **Spec:** `.ai-factory/notes/12-live-smoke-loki.md` [26m 50s]
 
+### Follow-ups (post-review)
+
+- [x] **Node entry: re-export the public API** — the package root `"."` resolves under Node to `dist/node.*` (built from `src/node/index.ts`), which re-exports context/span/propagation but **not** `init`/`log`/`flush`/`shutdown` — so `import { init, log } from 'observe-js'` is `undefined` for the NestJS/CJS consumers (mind_api, mind_mcp, tradeoxy_core); `core` is not in the `exports` map, so there is no other public path. The browser entry already re-exports them — only `src/node/index.ts` is missing them. Fix: add `init`/`log`/`flush`/`shutdown` (+ `InitOptions`/`Level` types) to `src/node/index.ts` (node uses **core** `init`, not the browser wrapper), and extend `test/exports.smoke.test.ts` to assert the full public API on the built `dist/node.*` and `dist/browser.*` (not just `__sdk`) — that assertion is the missing regression guard. Spec: `.ai-factory/notes/13-node-entry-public-api-exports.md`. [5m 52s]
+
 ## Definition of done (milestone)
 
 - One isomorphic package builds to dual ESM+CJS with correct conditional `exports`; zero runtime deps in core.

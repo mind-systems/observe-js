@@ -52,3 +52,27 @@ describe('entry stub imports', () => {
     expect(mod.__sdk).toBe('observe-js');
   });
 });
+
+// Full public API surface — asserted against the built dist artifacts so that
+// any accidental omission from the node or browser entry is caught at build time.
+const PUBLIC_API_FUNCTIONS = [
+  'init',
+  'log',
+  'flush',
+  'shutdown',
+  'startSpan',
+  'withSpan',
+  'inject',
+  'extract',
+] as const;
+
+const DIST_ENTRIES = ['dist/node.mjs', 'dist/browser.mjs'] as const;
+
+describe('full public API on built artifacts', () => {
+  it.each(DIST_ENTRIES)('%s exports all public API functions', async (entry) => {
+    const mod = await import(resolve(root, entry));
+    for (const name of PUBLIC_API_FUNCTIONS) {
+      expect(typeof mod[name], `${entry}: ${name}`).toBe('function');
+    }
+  });
+});
