@@ -22,3 +22,10 @@ export { LEVELS, severityFor } from './levels.js';
 
 // Resource builder
 export { buildResource } from './resource.js';
+
+// Envelope encoder
+export { encodeLogs, DEFAULT_SCOPE } from './encode.js';
+
+// OTLP/HTTP exporter
+export type { Exporter, ExporterConfig } from './exporter.js';
+export { createExporter } from './exporter.js';
