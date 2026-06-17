@@ -58,6 +58,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run clean && tsup",
+    "prepare": "npm run build",
     "test": "npm run build && vitest run",
     "test:loki": "vitest run test/smoke.loki.test.ts",
     "typecheck": "tsc --noEmit",
