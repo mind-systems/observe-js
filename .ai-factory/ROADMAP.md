@@ -38,7 +38,7 @@ Decomposition of the root milestone **`observe-js` SDK** (see `../.ai-factory/RO
 ### Verification
 
 - [x] **Contract conformance test (offline — required)** — serialize records and assert **field-for-field** equality against the submodule's `golden-record.json` and `fixtures/service-start.json`; assert the level table matches `levels.json`. This harness is itself a reference artifact for swift/dart. *Done when:* `vitest` conformance suite green against `observe-contract@v0.1.2`. **Spec:** `.ai-factory/notes/11-conformance-test.md` [27m 55s]
-- [ ] **Live smoke vs local Loki (required for this SDK)** — `init` + `log` → POST to `http://localhost:3100/otlp/v1/logs` → query back via LogQL; assert labels `project`/`service_name`/`level` and `trace_id` queryable as structured metadata (mirrors `backend-verify`). *Done when:* a record emitted by observe-js is retrievable from running Loki with the correct label set. **Spec:** `.ai-factory/notes/12-live-smoke-loki.md`
+- [x] **Live smoke vs local Loki (required for this SDK)** — `init` + `log` → POST to `http://localhost:3100/otlp/v1/logs` → query back via LogQL; assert labels `project`/`service_name`/`level` and `trace_id` queryable as structured metadata (mirrors `backend-verify`). *Done when:* a record emitted by observe-js is retrievable from running Loki with the correct label set. **Spec:** `.ai-factory/notes/12-live-smoke-loki.md` [26m 50s]
 
 ## Definition of done (milestone)
 

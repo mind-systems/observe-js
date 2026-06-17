@@ -59,6 +59,7 @@
     "clean": "rm -rf dist",
     "build": "npm run clean && tsup",
     "test": "npm run build && vitest run",
+    "test:loki": "vitest run test/smoke.loki.test.ts",
     "typecheck": "tsc --noEmit",
     "verify:exports": "node -e \"require('./dist/node.cjs')\" && node --input-type=module -e \"import('./dist/node.mjs').then(()=>process.exit(0))\" && node --input-type=module --conditions=browser -e \"import('./dist/browser.mjs').then(()=>process.exit(0))\" && npx attw --pack ."
   },
