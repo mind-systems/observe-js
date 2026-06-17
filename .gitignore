@@ -17,6 +17,9 @@ coverage/
 .claude/skills/
 .ai-factory.json
 
+# Pack artifacts
+*.tgz
+
 # Logs / temp
 *.log
 npm-debug.log*

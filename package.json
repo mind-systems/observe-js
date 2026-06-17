@@ -1,0 +1,72 @@
+{
+  "name": "observe-js",
+  "version": "0.0.0",
+  "type": "module",
+  "private": false,
+  "sideEffects": false,
+  "files": ["dist"],
+  "main": "./dist/node.cjs",
+  "module": "./dist/node.mjs",
+  "types": "./dist/node.d.ts",
+  "exports": {
+    ".": {
+      "browser": {
+        "import": {
+          "types": "./dist/browser.d.ts",
+          "default": "./dist/browser.mjs"
+        },
+        "require": {
+          "types": "./dist/browser.d.cts",
+          "default": "./dist/browser.cjs"
+        }
+      },
+      "node": {
+        "import": {
+          "types": "./dist/node.d.ts",
+          "default": "./dist/node.mjs"
+        },
+        "require": {
+          "types": "./dist/node.d.cts",
+          "default": "./dist/node.cjs"
+        }
+      },
+      "import": {
+        "types": "./dist/node.d.ts",
+        "default": "./dist/node.mjs"
+      },
+      "require": {
+        "types": "./dist/node.d.cts",
+        "default": "./dist/node.cjs"
+      }
+    },
+    "./winston": {
+      "import": {
+        "types": "./dist/winston.d.ts",
+        "default": "./dist/winston.mjs"
+      },
+      "require": {
+        "types": "./dist/winston.d.cts",
+        "default": "./dist/winston.cjs"
+      }
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "winston": ["./dist/winston.d.ts"]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsup",
+    "test": "npm run build && vitest run",
+    "typecheck": "tsc --noEmit",
+    "verify:exports": "node -e \"require('./dist/node.cjs')\" && node --input-type=module -e \"import('./dist/node.mjs').then(()=>process.exit(0))\" && node --input-type=module --conditions=browser -e \"import('./dist/browser.mjs').then(()=>process.exit(0))\" && npx attw --pack ."
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.15.4",
+    "@types/node": "^22.15.30",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.3"
+  }
+}
