@@ -14,3 +14,7 @@ export { getActiveContext, runWithContext, bindContext } from '../core/context.j
 // Span / correlation API re-exports for Node consumers.
 export type { Span } from '../core/index.js';
 export { startSpan, withSpan } from '../core/index.js';
+
+// Trace-context propagation re-exports for Node consumers.
+export type { Carrier } from '../core/index.js';
+export { inject, extract, objectCarrier, headersCarrier } from '../core/index.js';

@@ -41,3 +41,7 @@ export { setContextManager, getActiveContext, runWithContext, bindContext } from
 // Span / correlation core
 export type { Span } from './span.js';
 export { startSpan, withSpan } from './span.js';
+
+// Trace-context propagation
+export type { Carrier } from './propagation.js';
+export { inject, extract, objectCarrier, headersCarrier } from './propagation.js';

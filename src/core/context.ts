@@ -6,6 +6,8 @@ export interface Context {
   traceId: string;
   spanId: string;
   traceFlags: number;
+  /** W3C tracestate value, passed through verbatim when present. */
+  traceState?: string;
 }
 
 /**
