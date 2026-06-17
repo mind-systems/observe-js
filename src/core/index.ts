@@ -45,3 +45,7 @@ export { startSpan, withSpan } from './span.js';
 // Trace-context propagation
 export type { Carrier } from './propagation.js';
 export { inject, extract, objectCarrier, headersCarrier } from './propagation.js';
+
+// Public API: init + log
+export type { InitOptions } from './sdk.js';
+export { init, log } from './sdk.js';
