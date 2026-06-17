@@ -46,6 +46,6 @@ export { startSpan, withSpan } from './span.js';
 export type { Carrier } from './propagation.js';
 export { inject, extract, objectCarrier, headersCarrier } from './propagation.js';
 
-// Public API: init + log
+// Public API: init + log + lifecycle
 export type { InitOptions } from './sdk.js';
-export { init, log } from './sdk.js';
+export { init, log, flush, shutdown } from './sdk.js';

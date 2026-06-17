@@ -33,7 +33,7 @@ Decomposition of the root milestone **`observe-js` SDK** (see `../.ai-factory/RO
 ### Adapters
 
 - [x] **Node adapter — Winston transport** — subpath export (e.g. `observe-js/winston`) plugging into a Winston `transports` array; maps Winston levels → canonical tokens per the contract host map; additive, no call-site changes. *Done when:* a Winston logger with the transport ships records that pass conformance. **Spec:** `.ai-factory/notes/09-winston-transport.md` [24m 8s]
-- [ ] **Browser layer (incl. browser ambient context)** — framework-agnostic entry (no React/Angular code); the lightweight explicit ambient context (no `zone.js`); trace origination on user action; `traceparent` injection on outgoing `fetch`. *Done when:* a plain browser app can `init`, `log`, open a span on a click, and have the next `fetch` carry `traceparent`. **Spec:** `.ai-factory/notes/10-browser-layer.md`
+- [x] **Browser layer (incl. browser ambient context)** — framework-agnostic entry (no React/Angular code); the lightweight explicit ambient context (no `zone.js`); trace origination on user action; `traceparent` injection on outgoing `fetch`. *Done when:* a plain browser app can `init`, `log`, open a span on a click, and have the next `fetch` carry `traceparent`. **Spec:** `.ai-factory/notes/10-browser-layer.md` [27m 33s]
 
 ### Verification
 

@@ -10,6 +10,7 @@
 
 import type { Batcher, BatcherConfig } from './batcher.js';
 import { createBatcher } from './batcher.js';
+import type { Exporter } from './exporter.js';
 import { createExporter } from './exporter.js';
 import { getActiveContext } from './context.js';
 import type { Level } from './levels.js';
@@ -34,6 +35,14 @@ export interface InitOptions {
    * Do NOT route this through the host logger — that would create a log loop.
    */
   onError?: (err: unknown) => void;
+  /**
+   * Pluggable exporter for platform-specific transport (e.g. the browser beacon
+   * exporter). When provided, this exporter is used directly and `buildResource`
+   * + `createExporter` are skipped — the caller is responsible for constructing
+   * the exporter with the correct resource and endpoint.
+   * When absent, the default `fetch`-based OTLP exporter is created internally.
+   */
+  exporter?: Exporter;
 }
 
 // ── Module-level singleton ────────────────────────────────────────────────────
@@ -86,8 +95,15 @@ export function init(opts: InitOptions): void {
 
   _onError = opts.onError;
 
-  const resource = buildResource(opts.project, opts.service);
-  const exporter = createExporter({ endpoint: opts.endpoint, resource, onError: opts.onError });
+  // Use the provided exporter when supplied (e.g. browser beacon exporter);
+  // otherwise build the default fetch-based OTLP exporter with a fresh resource.
+  const exporter: Exporter = opts.exporter
+    ? opts.exporter
+    : createExporter({
+        endpoint: opts.endpoint,
+        resource: buildResource(opts.project, opts.service),
+        onError: opts.onError,
+      });
   _batcher = createBatcher({ exporter, ...opts.batch });
   _initialized = true;
 
@@ -154,4 +170,21 @@ export function log(level: Level, msg: string, attrs?: Record<string, unknown>):
   } catch {
     _onError?.(new Error('observe-js: unexpected error in log(); record dropped.'));
   }
+}
+
+/**
+ * Force-drain the current record queue. Safe to call before `init` (resolves
+ * immediately as a no-op). Never throws.
+ */
+export function flush(): Promise<void> {
+  return _batcher?.flush() ?? Promise.resolve();
+}
+
+/**
+ * Stop the periodic flush timer, drain remaining records, and await any
+ * in-flight export. Idempotent — repeated calls are safe. Safe to call before
+ * `init` (resolves immediately as a no-op). Never throws.
+ */
+export function shutdown(): Promise<void> {
+  return _batcher?.shutdown() ?? Promise.resolve();
 }
