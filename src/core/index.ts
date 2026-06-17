@@ -37,3 +37,7 @@ export { createBatcher } from './batcher.js';
 // Ambient context interface and registry
 export type { Context, ContextManager } from './context.js';
 export { setContextManager, getActiveContext, runWithContext, bindContext } from './context.js';
+
+// Span / correlation core
+export type { Span } from './span.js';
+export { startSpan, withSpan } from './span.js';

@@ -10,3 +10,7 @@ export { nodeContextManager } from './context.js';
 // Context API re-exports for Node consumers.
 export type { Context, ContextManager } from '../core/context.js';
 export { getActiveContext, runWithContext, bindContext } from '../core/context.js';
+
+// Span / correlation API re-exports for Node consumers.
+export type { Span } from '../core/index.js';
+export { startSpan, withSpan } from '../core/index.js';
