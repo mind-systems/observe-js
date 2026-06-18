@@ -15,7 +15,7 @@
 
 import Transport from 'winston-transport';
 import type { Level } from '../core/index.js';
-import { log } from '../core/index.js';
+import { log } from 'observe-js';
 
 // ── Level mapping ─────────────────────────────────────────────────────────────
 // Per the contract (otlp-logging-contract.md, Winston host→canonical row).

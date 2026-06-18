@@ -10,7 +10,10 @@
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
     "lib": ["ES2022", "DOM"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "observe-js": ["./src/core/index.ts"]
+    }
   },
   "include": ["src", "test"],
   "exclude": ["dist", "contract"]

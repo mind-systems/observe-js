@@ -24,12 +24,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 // Replace `log` with a spy so we can assert what the transport forwards.
 // All other core exports remain real.
 
-vi.mock('../src/core/index.js', async (importOriginal) => {
-  const original = await importOriginal<typeof import('../src/core/index.js')>();
+vi.mock('observe-js', async (importOriginal) => {
+  const original = await importOriginal<typeof import('observe-js')>();
   return { ...original, log: vi.fn() };
 });
 
-import * as CoreModule from '../src/core/index.js';
+import * as CoreModule from 'observe-js';
 import { ObserveTransport } from '../src/node/winston.js';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
