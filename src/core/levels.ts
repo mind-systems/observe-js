@@ -1,4 +1,4 @@
-// Canonical level → OTLP severity mapping sourced from the contract submodule.
+// Canonical level → OTLP severity mapping sourced from the inlined contract files.
 // Do not redeclare severity numbers here — they come from contract/levels.json.
 
 import levelsData from '../../contract/levels.json';
