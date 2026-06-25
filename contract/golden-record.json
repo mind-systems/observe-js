@@ -1,0 +1,34 @@
+{
+  "resourceLogs": [
+    {
+      "resource": {
+        "attributes": [
+          { "key": "project", "value": { "stringValue": "example-project" } },
+          { "key": "service.name", "value": { "stringValue": "example-service" } },
+          { "key": "service.instance.id", "value": { "stringValue": "0b9d7a3e-5f2c-4c1a-9e7d-3a6b8c1f2e4d" } }
+        ]
+      },
+      "scopeLogs": [
+        {
+          "scope": { "name": "observe", "version": "0.1.0" },
+          "logRecords": [
+            {
+              "timeUnixNano": "1718632800000000000",
+              "observedTimeUnixNano": "1718632800000000000",
+              "severityNumber": 9,
+              "severityText": "INFO",
+              "body": { "stringValue": "order placed" },
+              "attributes": [
+                { "key": "level", "value": { "stringValue": "info" } },
+                { "key": "order.id", "value": { "stringValue": "A-1024" } }
+              ],
+              "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+              "spanId": "00f067aa0ba902b7",
+              "flags": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

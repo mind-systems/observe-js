@@ -1,0 +1,32 @@
+{
+  "resourceLogs": [
+    {
+      "resource": {
+        "attributes": [
+          { "key": "project", "value": { "stringValue": "example-project" } },
+          { "key": "service.name", "value": { "stringValue": "example-service" } },
+          { "key": "service.instance.id", "value": { "stringValue": "0b9d7a3e-5f2c-4c1a-9e7d-3a6b8c1f2e4d" } }
+        ]
+      },
+      "scopeLogs": [
+        {
+          "scope": { "name": "observe", "version": "0.1.0" },
+          "logRecords": [
+            {
+              "timeUnixNano": "1718632800000000000",
+              "observedTimeUnixNano": "1718632800000000000",
+              "severityNumber": 9,
+              "severityText": "INFO",
+              "eventName": "service.start",
+              "body": { "stringValue": "service.start" },
+              "attributes": [
+                { "key": "level", "value": { "stringValue": "info" } },
+                { "key": "event.name", "value": { "stringValue": "service.start" } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$comment": "Draft level -> OTel severity mapping for the observe logging contract. Not frozen until tagged. severityNumber per the OpenTelemetry Logs Data Model (TRACE 1-4, DEBUG 5-8, INFO 9-12, WARN 13-16, ERROR 17-20, FATAL 21-24); a single level per range uses the range minimum.",
+  "version": "0.1.2",
+  "levels": {
+    "trace": { "severityNumber": 1,  "severityText": "TRACE" },
+    "debug": { "severityNumber": 5,  "severityText": "DEBUG" },
+    "info":  { "severityNumber": 9,  "severityText": "INFO" },
+    "warn":  { "severityNumber": 13, "severityText": "WARN" },
+    "error": { "severityNumber": 17, "severityText": "ERROR" },
+    "fatal": { "severityNumber": 21, "severityText": "FATAL" }
+  }
+}
