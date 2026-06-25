@@ -21,7 +21,7 @@ A thin, isomorphic TypeScript/JavaScript logging SDK that emits OpenTelemetry OT
 - **Build:** `tsup` — dual ESM+CJS via array of two config objects (one per `platform`); `clean: false` on both configs (cleaning owned by `npm run clean`)
 - **Tests:** `vitest` — `npm test` runs `build` first (smoke test reads `dist/`)
 - **Types validation:** `@arethetypeswrong/cli` — `attw --pack .` must pass; per-format `.d.cts` declarations for `require` conditions
-- **Contract:** `observe-contract` pinned at `v0.1.2` as a git submodule at `contract/`
+- **Contract:** `observe-contract` v0.1.2 content-inlined as plain tracked files at `contract/` (not a submodule)
 - **Distribution:** git dependency pinned to a tag (no npm registry)
 
 ## Public API

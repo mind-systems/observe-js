@@ -49,23 +49,23 @@
   - Optionally `npm pack --dry-run` to confirm the packed file list is sane.
   `prepare` and the `prepare: "npm run build"` script stay exactly as-is — do not modify `package.json` scripts. The `version` field in `package.json` may remain `0.0.0`; consumers pin by git tag, not by registry version.
 
-- [ ] **Task 4: Commit, tag `v0.2.0`, push** (depends on Task 3)
+- [x] **Task 4: Commit, tag `v0.2.0`, push** (depends on Task 3)
   Files: none (git operations)
   Commit the staged changes (submodule removal + inlined files) with a message such as `Inline contract files, remove git submodule`. The commit body should note the contract is now **content-inlined at v0.1.2** rather than submodule-pinned by SHA — version drift is henceforth caught by the soft `levelsData.version === '0.1.2'` check plus the baked-in conformance fixtures, not a submodule gitlink. Then `git tag v0.2.0` on that commit and `git push origin main v0.2.0`. Run all git commands from inside the `observe-js` sub-repo (per root coordination rules). Confirm the tag is visible on the remote so consumers can pin `#v0.2.0`.
 
-- [ ] **Task 5: Mark the milestone done in the roadmap** (depends on Task 4)
+- [x] **Task 5: Mark the milestone done in the roadmap** (depends on Task 4)
   Files: `observe-js/.ai-factory/ROADMAP.md`
   Tick the `[ ] Distribution fix — remove git submodule, tag v0.2.0` entry (line ~49) to `[x]`. This keeps roadmap linkage for the fix. Commit this in the `observe-js` repo (may fold into the Commit 1 set if done before the tag, or a small follow-up commit — but do not retag).
 
 ### Phase 2: Switch consumers off the vendored tgz
 
-- [ ] **Task 6: Update `mind_api` to install from the tag** (depends on Task 4)
+- [x] **Task 6: Update `mind_api` to install from the tag** (depends on Task 4)
   Files: `~/projects/mind/mind_api/package.json`, `~/projects/mind/mind_api/vendor/`
   In `package.json`, change the dependency `"observe-js": "file:./vendor/observe-js-0.0.0.tgz"` → `"observe-js": "git+https://github.com/mind-systems/observe-js.git#v0.2.0"`.
   Delete `vendor/observe-js-0.0.0.tgz` and the unpacked `vendor/observe-js/` directory; remove `vendor/` entirely if it becomes empty.
   Run `npm install` (or `rm -rf node_modules package-lock.json && npm install` if the lockfile still pins the tgz — npm otherwise keeps resolving the stale `file:` entry) and verify the app builds and `observe-js` resolves with `init`/`log` available. Run git operations inside the `mind_api` repo; commit the `package.json`/lockfile/vendor changes there.
 
-- [ ] **Task 7: Update `mind_web` to install from the tag** (depends on Task 4)
+- [x] **Task 7: Update `mind_web` to install from the tag** (depends on Task 4)
   Files: `~/projects/mind/mind_web/package.json`, `~/projects/mind/mind_web/vendor/`
   Same change as Task 6, in the `mind_web` repo: swap the `file:./vendor/...` dependency for `git+https://github.com/mind-systems/observe-js.git#v0.2.0`, delete `vendor/observe-js-0.0.0.tgz` and `vendor/observe-js/` (remove `vendor/` if empty), `npm install` (with the same lockfile-reset caveat), and verify the web app builds with the browser entry resolving correctly. Commit inside the `mind_web` repo.
 
